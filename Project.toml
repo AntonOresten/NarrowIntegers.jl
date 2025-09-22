@@ -1,0 +1,13 @@
+name = "NarrowIntegers"
+uuid = "220ac240-a7b0-4f4d-91f5-94b2a348b9df"
+authors = ["Anton Oresten <antonoresten@proton.me> and contributors"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.10"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
