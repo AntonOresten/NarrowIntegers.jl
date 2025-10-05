@@ -3,11 +3,10 @@ uuid = "220ac240-a7b0-4f4d-91f5-94b2a348b9df"
 authors = ["Anton Oresten <antonoresten@proton.me> and contributors"]
 version = "1.0.0-DEV"
 
+[deps]
+BitPacking = "b58c8408-13c4-4787-8733-7038ae624acf"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+
 [compat]
+BitPacking = "0.1"
 julia = "1.10"
-
-[extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-
-[targets]
-test = ["Test"]

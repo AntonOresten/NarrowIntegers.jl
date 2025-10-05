@@ -1,0 +1,4 @@
+[deps]
+BitPacking = "b58c8408-13c4-4787-8733-7038ae624acf"
+NarrowIntegers = "220ac240-a7b0-4f4d-91f5-94b2a348b9df"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
