@@ -34,18 +34,18 @@ for (name, op) in ((:multiadd, :+), (:multimul, :*))
     end
 end
 
-function multisub(x::T) where T<:MultiInt
-    ones = T(tile(typeof(x.data), Val(bitwidth(eltype(x))), Val(0x01)))
-    return multiadd(multinot(x), ones)
-end
-
-multisub(x::T, y::T) where T<:MultiInt = x + -y
-
 multiand(x::T, y::T) where T<:MultiInt = T(x.data & y.data)
 multior(x::T, y::T) where T<:MultiInt = T(x.data | y.data)
 multixor(x::T, y::T) where T<:MultiInt = T(x.data ⊻ y.data)
 multinot(x::T) where T<:MultiInt = T(~x.data)
 
+function multisub(x::T) where T<:MultiInt
+    ones = T(tile(typeof(x.data), Val(bitwidth(eltype(x))), Val(0x01)))
+    return multiadd(multinot(x), ones)
+end
+
 Base.:+(x::T, y::T) where T<:MultiInt = multiadd(x, y)
-Base.:-(x::T, y::T) where T<:MultiInt = multisub(x, y)
 Base.:-(x::T) where T<:MultiInt = multisub(x)
+
+multisub(x::T, y::T) where T<:MultiInt = x + -y
+Base.:-(x::T, y::T) where T<:MultiInt = multisub(x, y)
