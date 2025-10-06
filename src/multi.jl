@@ -24,16 +24,6 @@ function Base.getindex(x::MultiInt{T,N}, i::Int) where {W,T<:NarrowInteger{W},N}
     return BitPacking.getint(x.data, T, i)
 end
 
-@generated function alternating_mask(::Type{U}, ::Val{W}) where {U<:Unsigned,W}
-    mask = U((0x01 << W) - 0x01)
-    x = zero(U)
-    k = sizeof(U) * 8 ÷ W
-    for k in 0:2:k-1
-        x |= mask << (k * W)
-    end
-    return :($x)
-end
-
 for (name, op) in ((:multiadd, :+), (:multimul, :*))
     @eval function ($name)(x::MultiInt{T,N,D}, y::MultiInt{T,N,D}) where {T,N,D}
         mask_a = alternating_mask(D, Val(bitwidth(T)))
